@@ -1,68 +1,68 @@
 
-	const btnRef = document.querySelector('.submit');
-	const formRef = document.querySelector('.form');
-	const STORAGE_KEY = 'formData';
-	let numberPromis = 0;
-	let diff = '';
+// 	const btnRef = document.querySelector('.submit');
+// 	const formRef = document.querySelector('.form');
+// 	const STORAGE_KEY = 'formData';
+// 	let numberPromis = 0;
+// 	let diff = '';
 
-	// let delayEL = ;
-	const inputHandler = e => {
-		const { name, value } = e.target;
+// 	// let delayEL = ;
+// 	const inputHandler = e => {
+// 		const { name, value } = e.target;
 
-	const savedData = localStorage.getItem(STORAGE_KEY);
-	const parsedData = JSON.parse(savedData);
+// 	const savedData = localStorage.getItem(STORAGE_KEY);
+// 	const parsedData = JSON.parse(savedData);
 
-		const formData = {
-		...parsedData,
-		[name]: value,
-		};
+// 		const formData = {
+// 		...parsedData,
+// 		[name]: value,
+// 		};
 
-		const serlizedData = JSON.stringify(formData);
-		localStorage.setItem(STORAGE_KEY, serlizedData);
-	};
+// 		const serlizedData = JSON.stringify(formData);
+// 		localStorage.setItem(STORAGE_KEY, serlizedData);
+// 	};
 
-const xmite = (e) => {
-	e.preventDefault();
-	const savedData = localStorage.getItem(STORAGE_KEY);
-	const parsedData = JSON.parse(savedData);
-	diff = parsedData;
-	const { position, delay, amount } = diff;
+// const xmite = (e) => {
+// 	e.preventDefault();
+// 	const savedData = localStorage.getItem(STORAGE_KEY);
+// 	const parsedData = JSON.parse(savedData);
+// 	diff = parsedData;
+// 	const { position, delay, amount } = diff;
 
-	for ( let i = 0; i < amount; i++ ) {
+// 	for ( let i = 0; i < amount; i++ ) {
 		
-		createPromise();
-	};
-};
+// 		createPromise();
+// 	};
+// };
 
-const createPromise = () => {
-	const prom = new Promise((resolve, reject) => {
-			const shouldResolve = Math.random() > 0.3;
-		setTimeout(() => {
-			if(shouldResolve) {
-				numberPromis += 1;
-				console.log(numberPromis);
-				console.log(00)
-				resolve();
-			} else {
-				numberPromis += 1;
-				console.log(numberPromis);
-				console.log(77)
-				reject((err) => {
-					if (err)
-						console.log("Adding Location error" + err);
-					return Promise.reject();
-				});
-			}
-		},1000)
-	})
-	return prom;
-};
-createPromise()
-.then(( position, delay ) => {
-	console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-})
-.catch(( position, delay ) => {
-	console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-});
-formRef.addEventListener('input', inputHandler);
-btnRef.addEventListener('click', xmite);
+// const createPromise = () => {
+// 	const prom = new Promise((resolve, reject) => {
+// 			const shouldResolve = Math.random() > 0.3;
+// 		setTimeout(() => {
+// 			if(shouldResolve) {
+// 				numberPromis += 1;
+// 				console.log(numberPromis);
+// 				console.log(00)
+// 				resolve();
+// 			} else {
+// 				numberPromis += 1;
+// 				console.log(numberPromis);
+// 				console.log(77)
+// 				reject((err) => {
+// 					if (err)
+// 						console.log("Adding Location error" + err);
+// 					return Promise.reject();
+// 				});
+// 			}
+// 		},1000)
+// 	})
+// 	return prom;
+// };
+// createPromise()
+// .then(( position, delay ) => {
+// 	console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+// })
+// .catch(( position, delay ) => {
+// 	console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+// });
+// formRef.addEventListener('input', inputHandler);
+// btnRef.addEventListener('click', xmite);
