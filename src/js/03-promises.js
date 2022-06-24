@@ -1,3 +1,41 @@
+const form = document.querySelector('.form');
+form.addEventListener('submit', inputVal);
+let delayVal;
+let stepVal;
+let amountVal;
+
+function inputVal(e) {
+  e.preventDefault();
+  const { delay, step, amount } = e.target.elements;
+  delayVal = Number(delay.value);
+  stepVal = Number(step.value);
+  amountVal = Number(amount.value);
+  for (let i = 1,delay = delayVal; i <= amountVal; i += 1, delay += stepVal ) {
+		console.log(delay);
+		console.log(i);
+		setTimeout(() => {
+    	createPromise( i, delay )
+      .then(({ i, delay }) => {
+        console.log(`✅ Fulfilled promise ${i} in ${delay}ms`);
+      })
+      .catch(({ i, delay }) => {
+        console.log(`❌ Rejected promise ${i} in ${delay}ms`);
+      });
+  	}, delay )
+	}
+}
+
+function createPromise(position, delay) {
+	console.log(position, delay);
+  const shouldResolve = Math.random() > 0.3;
+  return new Promise((resolve, reject) => {
+    if (shouldResolve) {
+      resolve(position, delay);
+    } else {
+      reject(position, delay);
+    }
+  });
+}
 
 // 	const btnRef = document.querySelector('.submit');
 // 	const formRef = document.querySelector('.form');
@@ -29,7 +67,7 @@
 // 	const { position, delay, amount } = diff;
 
 // 	for ( let i = 0; i < amount; i++ ) {
-		
+
 // 		createPromise();
 // 	};
 // };
