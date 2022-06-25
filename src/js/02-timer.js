@@ -1,10 +1,8 @@
-// import flatpickr from 'flatpickr';
-// import 'flatpickr/dist/flatpickr.min.css';
-
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+console.log(flatpickr);
 const inputRef = document.querySelector('input');
-
 const startRef = document.querySelector('button');
-
 const timerRef = document.querySelector('.timer');
 const dayEl = document.querySelector('span[data-days]');
 const hourEl = document.querySelector('span[data-hours]');
@@ -15,10 +13,12 @@ const date = new Date();
 let currentTime = '';
 let diff = '';
 
+inputRef.addEventListener('click', openWindowSelection);
+startRef.addEventListener('click', startOfTiming);
 
 startRef.setAttribute('disabled', 'disabled');
 
-const openWindowSelection = () => {
+function openWindowSelection() {
   const options = {
     enableTime: true,
     time_24hr: true,
@@ -33,10 +33,10 @@ const openWindowSelection = () => {
       }
     },
   };
-  flatpickr(inputRef, options);
+  // flatpickr(inputRef, options);
 };
 
-const startOfTiming = () => {
+function startOfTiming() {
 	const renderTime = () => {
 		// console.log(userTimeOut);
 		let date = new Date();
@@ -74,5 +74,4 @@ function convertMs(ms) {
 	return { days, hours, minutes, seconds };
 }
 
-inputRef.addEventListener('click', openWindowSelection);
-startRef.addEventListener('click', startOfTiming);
+
