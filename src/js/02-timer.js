@@ -1,6 +1,5 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-console.log(flatpickr);
 const inputRef = document.querySelector('input');
 const startRef = document.querySelector('button');
 const timerRef = document.querySelector('.timer');
@@ -33,7 +32,7 @@ function openWindowSelection() {
       }
     },
   };
-  // flatpickr(inputRef, options);
+  flatpickr(inputRef, options);
 };
 
 function startOfTiming() {
