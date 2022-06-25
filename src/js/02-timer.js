@@ -12,8 +12,6 @@ const date = new Date();
 let currentTime = '';
 let diff = '';
 
-inputRef.addEventListener('click', openWindowSelection);
-startRef.addEventListener('click', startOfTiming);
 
 startRef.setAttribute('disabled', 'disabled');
 
@@ -33,44 +31,44 @@ function openWindowSelection() {
     },
   };
   flatpickr(inputRef, options);
-};
-
-function startOfTiming() {
-	const renderTime = () => {
-		// console.log(userTimeOut);
-		let date = new Date();
-		const userTimeOut = new Date(currentTime);
-		diff = userTimeOut - date;
-		if ( diff < 0 ) {
-			clearInterval();
-			timerRef.textContent = 'Отсчет окончен!';
-		} else {
-		const { days, hours, minutes, seconds } = convertMs(diff);
-			secondEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
-			minuteEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
-			hourEl.innerHTML = hours < 10 ? '0' + hours : hours;
-			dayEl.innerHTML = days < 10 ? '0' + days : days;
-		}
-	};
-	setInterval(renderTime, 1000);
-  };
-
-function convertMs(ms) {
-	const second = 1000;
-	const minute = second * 60;
-	const hour = minute * 60;
-	const day = hour * 24;
-
-	// Remaining days
-	const days = Math.floor(ms / day);
-	// Remaining hours
-	const hours = Math.floor((ms % day) / hour);
-	// Remaining minutes
-	const minutes = Math.floor(((ms % day) % hour) / minute);
-	// Remaining seconds
-	const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-
-	return { days, hours, minutes, seconds };
 }
 
+function startOfTiming() {
+  const renderTime = () => {
+    let date = new Date();
+    const userTimeOut = new Date(currentTime);
+    diff = userTimeOut - date;
+    if (diff < 0) {
+      clearInterval();
+      timerRef.textContent = 'Отсчет окончен!';
+    } else {
+      const { days, hours, minutes, seconds } = convertMs(diff);
+      secondEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+      minuteEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+      hourEl.innerHTML = hours < 10 ? '0' + hours : hours;
+      dayEl.innerHTML = days < 10 ? '0' + days : days;
+    }
+  };
+  setInterval(renderTime, 1000);
+}
 
+function convertMs(ms) {
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Remaining days
+  const days = Math.floor(ms / day);
+  // Remaining hours
+  const hours = Math.floor((ms % day) / hour);
+  // Remaining minutes
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  // Remaining seconds
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+  return { days, hours, minutes, seconds };
+}
+
+inputRef.addEventListener('click', openWindowSelection);
+startRef.addEventListener('click', startOfTiming);
