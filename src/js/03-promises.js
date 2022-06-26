@@ -10,28 +10,30 @@ function inputVal(e) {
   delayVal = Number(delay.value);
   stepVal = Number(step.value);
   amountVal = Number(amount.value);
-  for ( let i = 1,delayNum = delayVal; i <= amountVal; i += 1, delayNum += stepVal ) {
-		
-    const a =	createPromise( i, delayNum );
-		setTimeout(() => {
-      a.then(( {position, delay} ) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-      })
-      .catch(( {position, delay} ) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-      });
-  	}, delayNum )
-	}
+  for (
+    let i = 1, delayNum = delayVal;
+    i <= amountVal;
+    i += 1, delayNum += stepVal
+  ) {
+    setTimeout(() => {
+      createPromise(i, delayNum)
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        })
+        .catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        });
+    }, delayNum);
+  }
 }
-
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
   return new Promise((resolve, reject) => {
     if (shouldResolve) {
-      resolve({position, delay});
+      resolve({ position, delay });
     } else {
-      reject({position, delay});
+      reject({ position, delay });
     }
   });
 }
