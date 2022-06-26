@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+
 const inputRef = document.querySelector('input');
 const startRef = document.querySelector('button');
 const timerRef = document.querySelector('.timer');
